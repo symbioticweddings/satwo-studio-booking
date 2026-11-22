@@ -120,11 +120,21 @@ dengan sentuhan moden, lembut dan elegan.</p>
                 </div>
 
                 <div class="form-group">
-                    <label for="time">Pilih masa sesi</label>
-                    <select id="time">
-                        <option value="">Pilih tarikh dahulu</option>
-                    </select>
-                </div>
+    <label id="time-label">Pilih masa sesi</label>
+
+    <input type="hidden" id="time" value="">
+
+    <div id="time-slots"
+         role="group"
+         aria-labelledby="time-label">
+
+        <p class="slot-placeholder">
+            Sila pilih dekorasi dan tarikh dahulu.
+        </p>
+
+    </div>
+</div>
+             
 
                 <div class="form-group">
                     <label for="pax">Jumlah orang</label>
