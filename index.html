@@ -1,0 +1,215 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f1e9">
+    <title>SATWO Studio | Raya 2027</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+    <a class="logo" href="#">SATWO<span>.</span></a>
+    <a href="#booking" class="nav-button">Book Session</a>
+</header>
+
+<main>
+
+    <section class="hero">
+        <span class="eyebrow">THE RAYA COLLECTION 2027</span>
+        <h1>Timeless moments.<br>Meaningful memories.</h1>
+        <p>Celebrate togetherness and capture the beauty
+        of Raya with the people who matter most.</p>
+        <a href="#collection" class="primary-button">
+            Explore Our Collection
+        </a>
+        <span class="hero-location">
+            JOHOR BAHRU, MALAYSIA
+        </span>
+    </section>
+
+    <section class="collection" id="collection">
+
+        <div class="section-heading">
+            <span class="eyebrow">OUR SETS</span>
+            <h2>Choose your atmosphere.</h2>
+            <p>Two distinct concepts. One beautiful memory.</p>
+        </div>
+
+        <div class="collection-grid">
+
+            <article class="deco-card">
+                <div class="deco-image klasik">
+                    <span>COMING SOON</span>
+                </div>
+                <div class="deco-content">
+                    <span class="eyebrow">COLLECTION 01</span>
+                    <h3>Klasik</h3>
+                    <p>A nostalgic celebration of heritage,
+                    warmth and tradition.</p>
+                    <span class="price">From RM160 / session</span>
+                    <button type="button" class="select-button"
+                    data-deco="Klasik">
+                        Select Klasik
+                    </button>
+                </div>
+            </article>
+
+            <article class="deco-card">
+                <div class="deco-image earthy">
+                    <span>COMING SOON</span>
+                </div>
+                <div class="deco-content">
+                    <span class="eyebrow">COLLECTION 02</span>
+                    <h3>Earthy</h3>
+                    <p>A refined blend of natural textures,
+                    soft tones and modern simplicity.</p>
+                    <span class="price">From RM160 / session</span>
+                    <button type="button" class="select-button"
+                    data-deco="Earthy">
+                        Select Earthy
+                    </button>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <section class="session-info">
+        <div>
+            <strong>20 MIN</strong>
+            <span>Photography session</span>
+        </div>
+        <div>
+            <strong>1-8 PAX</strong>
+            <span>Included per session</span>
+        </div>
+        <div>
+            <strong>2 SETS</strong>
+            <span>Exclusive Raya concepts</span>
+        </div>
+    </section>
+
+    <section class="booking" id="booking">
+
+        <div class="section-heading">
+            <span class="eyebrow">RESERVATION</span>
+            <h2>Make it a memory.</h2>
+            <p>Plan your Raya photography session.</p>
+        </div>
+
+        <div class="booking-container">
+
+            <div class="booking-form">
+
+                <div class="form-group">
+                    <label for="deco">Studio collection</label>
+                    <select id="deco">
+                        <option value="">Select your collection</option>
+                        <option value="Klasik">Klasik</option>
+                        <option value="Earthy">Earthy</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Preferred date</label>
+                    <input type="date" id="date">
+                </div>
+
+                <div class="form-group">
+                    <label for="time">Available time slots</label>
+                    <select id="time">
+                        <option value="">Select a date first</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="pax">Number of guests</label>
+                    <select id="pax">
+                        <option value="1">1 pax</option>
+                        <option value="2">2 pax</option>
+                        <option value="3">3 pax</option>
+                        <option value="4">4 pax</option>
+                        <option value="5">5 pax</option>
+                        <option value="6">6 pax</option>
+                        <option value="7">7 pax</option>
+                        <option value="8" selected>8 pax</option>
+                        <option value="9">9 pax</option>
+                        <option value="10">10 pax</option>
+                        <option value="11">11 pax</option>
+                        <option value="12">12 pax</option>
+                        <option value="13">13 pax</option>
+                        <option value="14">14 pax</option>
+                        <option value="15">15 pax</option>
+                    </select>
+                    <small>Additional RM15 per pax after 8 guests.</small>
+                </div>
+
+            </div>
+
+            <aside class="booking-summary">
+                <h3>Booking Summary</h3>
+
+                <div class="summary-row">
+                    <span>Collection</span>
+                    <strong id="summary-deco">Not selected</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Date</span>
+                    <strong id="summary-date">Not selected</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Time</span>
+                    <strong id="summary-time">Not selected</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Guests</span>
+                    <strong id="summary-pax">8 pax</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Session price</span>
+                    <strong id="base-price">RM160.00</strong>
+                </div>
+
+                <div class="summary-row">
+                    <span>Additional guests</span>
+                    <strong id="extra-price">RM0.00</strong>
+                </div>
+
+                <div class="summary-total">
+                    <span>Total</span>
+                    <strong id="total-price">RM160.00</strong>
+                </div>
+
+                <button type="button" id="continue-booking"
+                class="primary-button" disabled>
+                    Booking Opening Soon
+                </button>
+
+                <p class="booking-note">
+                    Preview only. Reservations and online
+                    payments are not yet available.
+                </p>
+            </aside>
+
+        </div>
+    </section>
+
+</main>
+
+<footer>
+    <h2>SATWO.</h2>
+    <p>Made for moments that matter.</p>
+    <span>© 2027 SATWO Studio. All rights reserved.</span>
+</footer>
+
+<script src="script.js" defer></script>
+
+</body>
+</html>
