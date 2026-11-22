@@ -1,6 +1,6 @@
 
 // SATWO STUDIO BOOKING SYSTEM 2027
-// Version 0.1 - Frontend Prototype
+// Version 0.2 - Bahasa Melayu
 
 const settings = {
     normalPrice: 160,
@@ -15,8 +15,7 @@ const settings = {
     breakStart: 18 * 60,
     breakEnd: 20 * 60,
 
-    // Demo dates only.
-    // Final dates will be configured later.
+    // Temporary demo dates
     startDate: "2027-02-08",
     endDate: "2027-03-19",
     rayaDates: [
@@ -60,12 +59,26 @@ function formatMoney(amount) {
     return "RM" + amount.toFixed(2);
 }
 
-// Format time
+// Malay time format
 
 function formatTime(minutes) {
-    const hours = Math.floor(minutes / 60);
+    const hours = Math.floor(minutes / 60) % 24;
     const mins = minutes % 60;
-    const period = hours >= 12 ? "PM" : "AM";
+
+    let period;
+
+    if (hours < 1) {
+        period = "tengah malam";
+    } else if (hours < 12) {
+        period = "pagi";
+    } else if (hours < 14) {
+        period = "tengah hari";
+    } else if (hours < 19) {
+        period = "petang";
+    } else {
+        period = "malam";
+    }
+
     const displayHour = hours % 12 || 12;
 
     return displayHour + ":" +
@@ -73,16 +86,28 @@ function formatTime(minutes) {
         " " + period;
 }
 
-// Format date
+// Internal 24-hour time format
+
+function formatTimeValue(minutes) {
+    const hours = Math.floor(minutes / 60);
+    const mins = minutes % 60;
+
+    return String(hours).padStart(2, "0") +
+        ":" +
+        String(mins).padStart(2, "0");
+}
+
+// Malay date format
 
 function formatDate(value) {
-    if (!value) return "Not selected";
+
+    if (!value) return "Belum dipilih";
 
     const selectedDate =
         new Date(value + "T00:00:00");
 
     return selectedDate.toLocaleDateString(
-        "en-GB",
+        "ms-MY",
         {
             day: "numeric",
             month: "long",
@@ -94,6 +119,7 @@ function formatDate(value) {
 // Generate demo time slots
 
 function generateSlots() {
+
     time.innerHTML = "";
 
     const placeholder =
@@ -102,8 +128,9 @@ function generateSlots() {
     placeholder.value = "";
 
     if (!deco.value) {
+
         placeholder.textContent =
-            "Select a collection first";
+            "Pilih dekorasi dahulu";
 
         time.appendChild(placeholder);
         time.disabled = true;
@@ -111,8 +138,9 @@ function generateSlots() {
     }
 
     if (!date.value || !date.checkValidity()) {
+
         placeholder.textContent =
-            "Select a valid date first";
+            "Pilih tarikh yang sah dahulu";
 
         time.appendChild(placeholder);
         time.disabled = true;
@@ -120,7 +148,7 @@ function generateSlots() {
     }
 
     placeholder.textContent =
-        "Select your preferred time";
+        "Pilih masa sesi";
 
     time.appendChild(placeholder);
     time.disabled = false;
@@ -145,10 +173,10 @@ function generateSlots() {
         const option =
             document.createElement("option");
 
-        option.value = formatTime(minutes);
+        option.value = formatTimeValue(minutes);
 
         option.textContent =
-            formatTime(minutes) + " - " +
+            formatTime(minutes) + " – " +
             formatTime(
                 minutes + settings.sessionDuration
             );
@@ -160,6 +188,7 @@ function generateSlots() {
 // Calculate booking price
 
 function calculatePrice() {
+
     const guestCount = Number(pax.value);
 
     const isRaya =
@@ -177,7 +206,8 @@ function calculatePrice() {
     const additionalPrice =
         additionalGuests * settings.extraPaxPrice;
 
-    const total = sessionPrice + additionalPrice;
+    const total =
+        sessionPrice + additionalPrice;
 
     basePrice.textContent =
         formatMoney(sessionPrice);
@@ -189,29 +219,43 @@ function calculatePrice() {
         formatMoney(total);
 
     summaryPax.textContent =
-        guestCount + " pax";
+        guestCount + " orang";
 }
 
 // Update booking summary
 
 function updateSummary() {
+
     summaryDeco.textContent =
-        deco.value || "Not selected";
+        deco.value || "Belum dipilih";
 
     summaryDate.textContent =
         date.checkValidity()
             ? formatDate(date.value)
-            : "Invalid date";
+            : "Tarikh tidak sah";
 
-    summaryTime.textContent =
-        time.value || "Not selected";
+    if (time.value) {
+
+        const [hours, minutes] =
+            time.value.split(":").map(Number);
+
+        summaryTime.textContent =
+            formatTime(hours * 60 + minutes);
+
+    } else {
+
+        summaryTime.textContent =
+            "Belum dipilih";
+    }
 
     document.querySelectorAll(".select-button")
         .forEach(button => {
+
             button.classList.toggle(
                 "active",
                 button.dataset.deco === deco.value
             );
+
         });
 
     calculatePrice();
@@ -223,6 +267,7 @@ document.querySelectorAll(".select-button")
     .forEach(button => {
 
         button.addEventListener("click", () => {
+
             deco.value = button.dataset.deco;
 
             generateSlots();
@@ -232,6 +277,7 @@ document.querySelectorAll(".select-button")
                 .scrollIntoView({
                     behavior: "smooth"
                 });
+
         });
 
     });
@@ -264,5 +310,5 @@ generateSlots();
 updateSummary();
 
 console.log(
-    "SATWO Studio Booking Prototype Ready"
+    "SATWO Studio Booking Prototype V0.2 Ready"
 );
