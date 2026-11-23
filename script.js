@@ -42,7 +42,31 @@ function updatePaxOptions() {
   }
 }
 const timeSlots = document.getElementById("time-slots");
+// Extra slot elements
+const extraSlotSection =
+  document.getElementById("extra-slot-section");
 
+const addSlotBtn =
+  document.getElementById("add-slot-btn");
+
+const extraSlotContainer =
+  document.getElementById("extra-slot-container");
+
+const extraTimeSlots =
+  document.getElementById("extra-time-slots");
+
+// Masa slot kedua
+let extraSlotTime = "";
+let hasExtraSlot = false;
+function resetExtraSlot() {
+  extraSlotTime = "";
+  hasExtraSlot = false;
+
+  extraSlotContainer.hidden = true;
+  extraTimeSlots.innerHTML = "";
+
+  addSlotBtn.textContent = "+ Tambah Slot";
+}
 const summaryDeco = document.getElementById("summary-deco");
 const summaryDate = document.getElementById("summary-date");
 const summaryTime = document.getElementById("summary-time");
@@ -250,9 +274,20 @@ function generateSlots() {
                     "aria-pressed", "true"
                 );
 
-                time.value = button.dataset.time;
+               time.value = button.dataset.time;
 
-                updateSummary();
+// Kosongkan pilihan slot kedua jika masa sama
+if (extraSlotTime === time.value) {
+  extraSlotTime = "";
+
+  extraTimeSlots.querySelectorAll(".slot-button")
+    .forEach(slot => {
+      slot.classList.remove("active");
+      slot.setAttribute("aria-pressed", "false");
+    });
+}
+
+updateSummary();
             });
 
             grid.appendChild(button);
@@ -356,6 +391,7 @@ document.querySelectorAll(".select-button")
         button.addEventListener("click", () => {
 
             deco.value = button.dataset.deco;
+            resetExtraSlot();
 updatePaxOptions();
 generateSlots();
             updateSummary();
@@ -371,14 +407,16 @@ generateSlots();
 // Event listeners
 
 deco.addEventListener("change", () => {
+  resetExtraSlot();
   updatePaxOptions();
   generateSlots();
   updateSummary();
 });
 
 date.addEventListener("change", () => {
-    generateSlots();
-    updateSummary();
+  resetExtraSlot();
+  generateSlots();
+  updateSummary();
 });
 function updatePaxOptions() {
   const maxPax = deco.value === "Klasik" ? 25 : 15;
