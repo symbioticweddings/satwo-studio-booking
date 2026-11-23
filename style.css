@@ -715,3 +715,34 @@ footer span {
         font-size: 12px;
     }
 }
+
+/* SATWO - Fix collapsible slot display */
+
+/* Pastikan elemen tersembunyi betul-betul hilang */
+#time-slots[hidden],
+#first-slot-compact[hidden],
+#extra-slot-container[hidden],
+#extra-slot-section[hidden] {
+    display: none !important;
+}
+
+/* Grid untuk slot tambahan */
+#extra-time-slots {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 14px;
+}
+
+/* Butang slot tambahan */
+#extra-time-slots .slot-button {
+    width: 100%;
+    margin: 0;
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    #extra-time-slots {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
