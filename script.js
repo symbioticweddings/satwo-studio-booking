@@ -236,7 +236,7 @@ function generateSlots() {
 
             button.addEventListener("click", () => {
 
-                document.querySelectorAll(".slot-button")
+                timeSlots.querySelectorAll(".slot-button")
                     .forEach(slot => {
                         slot.classList.remove("active");
                         slot.setAttribute(
