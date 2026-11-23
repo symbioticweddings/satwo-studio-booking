@@ -67,6 +67,33 @@ function resetExtraSlot() {
 
   addSlotBtn.textContent = "+ Tambah Slot";
 }
+// Paparkan butang tambah slot apabila dekorasi dan tarikh dipilih
+function updateExtraSlotSection() {
+  const ready = Boolean(
+    deco.value && date.value && date.checkValidity()
+  );
+
+  extraSlotSection.hidden = !ready;
+}
+
+// Buka atau tutup pilihan slot kedua
+addSlotBtn.addEventListener("click", () => {
+  if (!deco.value || !date.value || !time.value) {
+    alert("Sila pilih dekorasi, tarikh dan masa slot pertama dahulu.");
+    return;
+  }
+
+  if (hasExtraSlot) {
+    resetExtraSlot();
+  } else {
+    hasExtraSlot = true;
+      generateExtraTimeSlots();
+    extraSlotContainer.hidden = false;
+    addSlotBtn.textContent = "− Buang Slot Tambahan";
+  }
+
+  updateSummary();
+});
 const summaryDeco = document.getElementById("summary-deco");
 const summaryDate = document.getElementById("summary-date");
 const summaryTime = document.getElementById("summary-time");
@@ -78,7 +105,44 @@ const totalPrice = document.getElementById("total-price");
 
 date.min = settings.startDate;
 date.max = settings.endDate;
+function generateExtraTimeSlots() {
+  extraTimeSlots.innerHTML = "";
+  extraSlotTime = "";
 
+  if (!time.value) return;
+
+  const selectedTime = time.value;
+
+  timeSlots.querySelectorAll(".slot-button").forEach(slot => {
+    const slotTime = slot.dataset.time;
+
+    // Jangan benarkan masa yang sama dengan Slot 1
+    if (slotTime === selectedTime || slot.disabled) return;
+
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "slot-button";
+    button.textContent = slot.textContent;
+    button.dataset.time = slotTime;
+    button.setAttribute("aria-pressed", "false");
+
+    button.addEventListener("click", () => {
+      extraTimeSlots.querySelectorAll(".slot-button").forEach(item => {
+        item.classList.remove("active");
+        item.setAttribute("aria-pressed", "false");
+      });
+
+      button.classList.add("active");
+      button.setAttribute("aria-pressed", "true");
+
+      extraSlotTime = slotTime;
+      updateSummary();
+    });
+
+    extraTimeSlots.appendChild(button);
+  });
+}
 // Format currency
 
 function formatMoney(amount) {
