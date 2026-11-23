@@ -42,6 +42,39 @@ function updatePaxOptions() {
   }
 }
 const timeSlots = document.getElementById("time-slots");
+
+const firstSlotCompact =
+    document.getElementById("first-slot-compact");
+
+const firstSlotSelectedTime =
+    document.getElementById("first-slot-selected-time");
+
+const editFirstSlotBtn =
+    document.getElementById("edit-first-slot");
+
+function collapseFirstSlot() {
+    if (!time.value) return;
+
+    const [hours, minutes] = time.value.split(":").map(Number);
+    const start = hours * 60 + minutes;
+
+    firstSlotSelectedTime.textContent =
+        formatTime(start) + " – " +
+        formatTime(start + settings.sessionDuration);
+
+    timeSlots.hidden = true;
+    firstSlotCompact.hidden = false;
+}
+
+function expandFirstSlot() {
+    timeSlots.hidden = false;
+    firstSlotCompact.hidden = true;
+}
+
+editFirstSlotBtn.addEventListener("click", () => {
+    expandFirstSlot();
+});
+
 // Extra slot elements
 const extraSlotSection =
   document.getElementById("extra-slot-section");
@@ -90,6 +123,7 @@ addSlotBtn.addEventListener("click", () => {
       generateExtraTimeSlots();
     extraSlotContainer.hidden = false;
     addSlotBtn.textContent = "− Buang Slot Tambahan";
+      collapseFirstSlot();
   }
 
   updateSummary();
