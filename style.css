@@ -649,3 +649,69 @@ footer span {
         min-height: 48px;
     }
 }
+
+/* SATWO - Compact time slot */
+
+.slot-compact[hidden] {
+    display: none !important;
+}
+
+.slot-compact {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 20px;
+    margin: 16px 0 24px;
+    background: #f5f3ec;
+    border: 1px solid #deded2;
+    border-radius: 12px;
+}
+
+.slot-compact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.slot-compact-info span {
+    font-size: 13px;
+    color: #77796a;
+}
+
+.slot-compact-info strong {
+    font-size: 16px;
+    color: #343c2d;
+}
+
+.slot-edit-button {
+    padding: 10px 14px;
+    border: 1px solid #89917c;
+    border-radius: 8px;
+    background: transparent;
+    color: #343c2d;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.slot-edit-button:hover {
+    background: #e9ecdf;
+}
+
+@media (max-width: 480px) {
+    .slot-compact {
+        padding: 14px;
+        gap: 10px;
+    }
+
+    .slot-compact-info strong {
+        font-size: 14px;
+    }
+
+    .slot-edit-button {
+        padding: 9px 11px;
+        font-size: 12px;
+    }
+}
