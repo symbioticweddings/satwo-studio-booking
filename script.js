@@ -4,7 +4,7 @@
 
 const settings = {
     normalPrice: 160,
-    rayaPrice: 210,
+    rayaPrice: 220,
     includedPax: 8,
     extraPaxPrice: 15,
     maxPax: 15,
