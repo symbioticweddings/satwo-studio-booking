@@ -746,3 +746,24 @@ footer span {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
+
+/* SATWO - Extra Slot Grid Fix */
+
+#extra-time-slots {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+}
+
+#extra-time-slots > .slot-button {
+    display: block;
+    width: 100% !important;
+    min-width: 0;
+    margin: 0 !important;
+}
+
+@media (max-width: 600px) {
+    #extra-time-slots {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+}
