@@ -445,6 +445,7 @@ function updateSummary() {
         });
 
     calculatePrice();
+updateExtraSlotSection();
 }
 
 // Collection selection
@@ -514,8 +515,10 @@ pax.addEventListener("change", updateSummary);
 
 // Initialize prototype
 
+// Initialize prototype
 updatePaxOptions();
 generateSlots();
 updateSummary();
+updateExtraSlotSection();
 
 console.log("SATWO Studio V0.3 Ready");
