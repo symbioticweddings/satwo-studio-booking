@@ -28,6 +28,19 @@ const deco = document.getElementById("deco");
 const date = document.getElementById("date");
 const time = document.getElementById("time");
 const pax = document.getElementById("pax");
+function updatePaxOptions() {
+  const isKlasik = deco.value === "Klasik";
+  const maxPax = isKlasik ? 25 : 15;
+
+  Array.from(pax.options).forEach((option) => {
+    option.disabled = Number(option.value) > maxPax;
+    option.hidden = Number(option.value) > maxPax;
+  });
+
+  if (Number(pax.value) > maxPax) {
+    pax.value = String(maxPax);
+  }
+}
 const timeSlots = document.getElementById("time-slots");
 
 const summaryDeco = document.getElementById("summary-deco");
@@ -343,8 +356,8 @@ document.querySelectorAll(".select-button")
         button.addEventListener("click", () => {
 
             deco.value = button.dataset.deco;
-
-            generateSlots();
+updatePaxOptions();
+generateSlots();
             updateSummary();
 
             document.getElementById("booking")
@@ -358,8 +371,9 @@ document.querySelectorAll(".select-button")
 // Event listeners
 
 deco.addEventListener("change", () => {
-    generateSlots();
-    updateSummary();
+  updatePaxOptions();
+  generateSlots();
+  updateSummary();
 });
 
 date.addEventListener("change", () => {
@@ -371,6 +385,7 @@ pax.addEventListener("change", updateSummary);
 
 // Initialize prototype
 
+updatePaxOptions();
 generateSlots();
 updateSummary();
 
