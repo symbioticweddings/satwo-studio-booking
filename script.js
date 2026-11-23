@@ -380,7 +380,34 @@ date.addEventListener("change", () => {
     generateSlots();
     updateSummary();
 });
+function updatePaxOptions() {
+  const maxPax = deco.value === "Klasik" ? 25 : 15;
 
+  // Paparkan pilihan pax mengikut dekorasi
+  Array.from(pax.options).forEach(option => {
+    const count = Number(option.value);
+    option.hidden = count > maxPax;
+    option.disabled = count > maxPax;
+  });
+
+  // Reset kepada 8 orang jika melebihi kapasiti
+  if (Number(pax.value) > maxPax) {
+    pax.value = "8";
+  }
+
+  // Tukar nota mengikut dekorasi
+  const note = document.getElementById("pax-limit-note");
+
+  if (deco.value === "Klasik") {
+    note.textContent =
+      " Klasik: maksimum 25 orang dengan 2 slot.";
+  } else if (deco.value === "Minimal") {
+    note.textContent =
+      " Minimal: maksimum 15 orang.";
+  } else {
+    note.textContent = "";
+  }
+}
 pax.addEventListener("change", updateSummary);
 
 // Initialize prototype
