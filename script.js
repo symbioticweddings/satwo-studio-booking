@@ -759,3 +759,31 @@ pax.addEventListener("change", () => {
     updateSummary();
     updatePaymentSummary();
 });
+// Terms and Conditions
+
+const termsDialog = document.querySelector("dialog.terms-modal");
+const openTermsBtn = document.getElementById("open-terms");
+const closeTermsBtn = document.getElementById("close-terms");
+const agreeTerms = document.getElementById("agree-terms");
+const payDepositBtn = document.getElementById("pay-deposit");
+
+openTermsBtn.addEventListener("click", () => {
+    termsDialog.showModal();
+});
+
+closeTermsBtn.addEventListener("click", () => {
+    termsDialog.close();
+});
+
+function updateDepositButton() {
+    payDepositBtn.disabled = !agreeTerms.checked;
+}
+
+agreeTerms.addEventListener("change", updateDepositButton);
+
+backToCustomerBtn.addEventListener("click", () => {
+    agreeTerms.checked = false;
+    updateDepositButton();
+});
+
+updateDepositButton();
