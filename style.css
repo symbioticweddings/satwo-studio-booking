@@ -767,3 +767,83 @@ footer span {
         grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
     }
 }
+/* Customer booking step */
+
+#customer-step {
+    padding: 60px 20px;
+    scroll-margin-top: 100px;
+}
+
+#customer-step[hidden],
+#booking[hidden] {
+    display: none !important;
+}
+
+.customer-card {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 32px;
+    background: #faf9f4;
+    border: 1px solid #dedbd0;
+    border-radius: 16px;
+}
+
+.customer-card h2 {
+    font-size: 32px;
+    margin: 12px 0;
+}
+
+.customer-card > p {
+    color: #77796e;
+    line-height: 1.6;
+    margin-bottom: 28px;
+}
+
+.customer-card .form-group {
+    margin-bottom: 22px;
+}
+
+.customer-card input,
+.customer-card textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    border: 1px solid #d6d4ca;
+    border-radius: 8px;
+    background: #f8f7f2;
+    font: inherit;
+}
+
+.customer-card textarea {
+    resize: vertical;
+}
+
+.customer-card .primary-button,
+.customer-card .secondary-button {
+    width: 100%;
+    margin-top: 12px;
+}
+
+.customer-card .secondary-button {
+    padding: 14px;
+    border: 1px solid #64694f;
+    border-radius: 8px;
+    background: transparent;
+    color: #64694f;
+    font: inherit;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    #customer-step {
+        padding: 30px 16px;
+    }
+
+    .customer-card {
+        padding: 24px;
+    }
+
+    .customer-card h2 {
+        font-size: 28px;
+    }
+}
