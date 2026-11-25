@@ -787,3 +787,92 @@ backToCustomerBtn.addEventListener("click", () => {
 });
 
 updateDepositButton();
+// Booking confirmation simulation
+
+const confirmationStep =
+    document.getElementById("confirmation-step");
+
+const finishBookingBtn =
+    document.getElementById("finish-booking");
+
+payDepositBtn.addEventListener("click", () => {
+
+    validateCustomerForm();
+    updateContinueButton();
+
+    if (!agreeTerms.checked ||
+        paymentBtn.disabled ||
+        continueBookingBtn.disabled) return;
+
+    updateSummary();
+    updatePaymentSummary();
+
+    const reference =
+        "DEMO-" + Date.now().toString().slice(-8);
+
+    document.getElementById("confirmation-ref")
+        .textContent = reference;
+
+    document.getElementById("confirmation-name")
+        .textContent = nameInput.value.trim();
+
+    document.getElementById("confirmation-deco")
+        .textContent = deco.value;
+
+    document.getElementById("confirmation-date")
+        .textContent = summaryDate.textContent;
+
+    document.getElementById("confirmation-time")
+        .textContent = summaryTime.textContent;
+
+    document.getElementById("confirmation-pax")
+        .textContent = pax.value + " orang";
+
+    const extraRow =
+        document.getElementById("confirmation-extra-row");
+
+    const extraTime =
+        document.getElementById("confirmation-extra-time");
+
+    extraRow.hidden = !(hasExtraSlot && extraSlotTime);
+
+    if (hasExtraSlot && extraSlotTime) {
+
+        const [hours, minutes] =
+            extraSlotTime.split(":").map(Number);
+
+        const start = hours * 60 + minutes;
+
+        extraTime.textContent =
+            formatTime(start) + " – " +
+            formatTime(start + settings.sessionDuration);
+
+    } else {
+        extraTime.textContent = "-";
+    }
+
+    document.getElementById("confirmation-total")
+        .textContent =
+        document.getElementById("payment-total").textContent;
+
+    document.getElementById("confirmation-deposit")
+        .textContent =
+        document.getElementById("payment-deposit").textContent;
+
+    document.getElementById("confirmation-balance")
+        .textContent =
+        document.getElementById("payment-balance").textContent;
+
+    paymentStep.hidden = true;
+    confirmationStep.hidden = false;
+
+    confirmationStep.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
+});
+
+finishBookingBtn.addEventListener("click", () => {
+    window.location.reload();
+});
