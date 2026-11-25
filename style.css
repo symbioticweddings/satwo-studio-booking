@@ -1006,3 +1006,58 @@ footer span {
     text-decoration: underline;
     cursor: pointer;
 }
+/* Terms and Conditions Popup */
+
+.terms-modal {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: calc(100% - 32px);
+    max-width: 580px;
+    max-height: 85vh;
+    padding: 30px;
+    box-sizing: border-box;
+    border: 1px solid #e2e0d8;
+    border-radius: 16px;
+    background: #faf9f5;
+    color: #33352d;
+    overflow-y: auto;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+}
+
+.terms-modal::backdrop {
+    background: rgba(0,0,0,0.55);
+    backdrop-filter: blur(4px);
+}
+
+.terms-modal h2 {
+    font-size: 28px;
+    margin: 12px 0 24px;
+}
+
+.terms-content h3 {
+    font-size: 16px;
+    margin: 20px 0 8px;
+    color: #454b35;
+}
+
+.terms-content p {
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+#close-terms {
+    width: 100%;
+    margin-top: 16px;
+}
+
+@media (max-width: 600px) {
+    .terms-modal {
+        padding: 22px;
+    }
+
+    .terms-modal h2 {
+        font-size: 24px;
+    }
+}
