@@ -753,3 +753,9 @@ backToCustomerBtn.addEventListener("click", () => {
         block: "start"
     });
 });
+// Refresh payment summary when booking changes
+
+pax.addEventListener("change", () => {
+    updateSummary();
+    updatePaymentSummary();
+});
