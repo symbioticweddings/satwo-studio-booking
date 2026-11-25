@@ -427,6 +427,8 @@ function calculatePrice() {
         additionalGuests * settings.extraPaxPrice;
 
     const slotCount = hasExtraSlot && extraSlotTime ? 2 : 1;
+    document.getElementById("summary-slot-count").textContent =
+    (time.value ? slotCount : 0) + " slot";
 
 const totalSessionPrice = sessionPrice * slotCount;
 
