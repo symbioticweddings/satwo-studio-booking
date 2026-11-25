@@ -509,6 +509,10 @@ if (extraTimeSummary) {
 
 calculatePrice();
 updateExtraSlotSection();
+
+if (document.getElementById("continue-booking")) {
+    updateContinueButton();
+}
 }
 
 // Collection selection
@@ -579,9 +583,71 @@ pax.addEventListener("change", updateSummary);
 // Initialize prototype
 
 // Initialize prototype
+
+
+console.log("SATWO Studio V0.3 Ready");
+
+
+// Customer booking navigation
+
+const continueBookingBtn =
+    document.getElementById("continue-booking");
+
+const customerStep =
+    document.getElementById("customer-step");
+
+const backToBookingBtn =
+    document.getElementById("back-to-booking");
+
+function updateContinueButton() {
+
+    const guestCount = Number(pax.value);
+
+    const secondSlotReady =
+        hasExtraSlot && !!extraSlotTime;
+
+    const maxGuests =
+        deco.value === "Klasik" && secondSlotReady
+        ? 25 : 15;
+
+    const ready =
+        !!deco.value &&
+        !!date.value &&
+        date.checkValidity() &&
+        !!time.value &&
+        guestCount > 0 &&
+        guestCount <= maxGuests &&
+        (!hasExtraSlot || secondSlotReady);
+
+    continueBookingBtn.disabled = !ready;
+}
+
+continueBookingBtn.addEventListener("click", () => {
+
+    updateContinueButton();
+
+    if (continueBookingBtn.disabled) return;
+
+    customerStep.hidden = false;
+
+    customerStep.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+});
+
+backToBookingBtn.addEventListener("click", () => {
+
+    customerStep.hidden = true;
+
+    document.getElementById("booking")
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+});
+
 updatePaxOptions();
 generateSlots();
 updateSummary();
 updateExtraSlotSection();
-
-console.log("SATWO Studio V0.3 Ready");
+updateContinueButton();
