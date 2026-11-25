@@ -259,9 +259,9 @@ dengan sentuhan moden, lembut dan elegan.</p>
                 </div>
 
                 <button type="button" id="continue-booking"
-                class="primary-button" disabled>
-                    Tempahan Akan Dibuka
-                </button>
+class="primary-button" disabled>
+    Teruskan Tempahan
+</button>
 
                 <p class="booking-note">
                     Paparan percubaan sahaja. Tempahan
@@ -271,7 +271,70 @@ dengan sentuhan moden, lembut dan elegan.</p>
 
         </div>
     </section>
+<section id="customer-step" hidden>
 
+    <div class="customer-card">
+
+        <span class="eyebrow">LANGKAH 2 DARIPADA 4</span>
+
+        <h2>Maklumat Pelanggan</h2>
+
+        <p>Sila lengkapkan maklumat anda untuk meneruskan tempahan.</p>
+
+        <form id="customer-form">
+
+            <div class="form-group">
+                <label for="customer-name">Nama penuh *</label>
+                <input type="text"
+                    id="customer-name"
+                    placeholder="Masukkan nama penuh"
+                    autocomplete="name"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="customer-phone">Nombor WhatsApp *</label>
+                <input type="tel"
+                    id="customer-phone"
+                    placeholder="Contoh: 0123456789"
+                    autocomplete="tel"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="customer-email">Alamat e-mel *</label>
+                <input type="email"
+                    id="customer-email"
+                    placeholder="nama@email.com"
+                    autocomplete="email"
+                    required>
+            </div>
+
+            <div class="form-group">
+                <label for="customer-note">Catatan tambahan (pilihan)</label>
+                <textarea id="customer-note"
+                    rows="4"
+                    placeholder="Sebarang permintaan khas..."></textarea>
+            </div>
+
+            <button type="button"
+                id="back-to-booking"
+                class="secondary-button">
+                Kembali
+            </button>
+
+            <button type="button"
+                id="continue-payment"
+                class="primary-button"
+                disabled>
+                Teruskan ke Pembayaran
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
 </main>
 
 <footer>
