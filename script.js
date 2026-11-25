@@ -686,3 +686,70 @@ customerForm.addEventListener("submit", (event) => {
 });
 
 validateCustomerForm();
+
+// Payment deposit calculation
+
+const paymentStep =
+    document.getElementById("payment-step");
+
+const backToCustomerBtn =
+    document.getElementById("back-to-customer");
+
+const depositPerSlot = 50;
+
+function updatePaymentSummary() {
+
+    calculatePrice();
+
+    const slotCount =
+        hasExtraSlot && extraSlotTime ? 2 : 1;
+
+    const bookingTotal = Number(
+        totalPrice.textContent.replace(/[^0-9.]/g, "")
+    );
+
+    const deposit = slotCount * depositPerSlot;
+    const balance = bookingTotal - deposit;
+
+    document.getElementById("payment-slots")
+        .textContent = slotCount + " sesi";
+
+    document.getElementById("payment-total")
+        .textContent = formatMoney(bookingTotal);
+
+    document.getElementById("payment-deposit")
+        .textContent = formatMoney(deposit);
+
+    document.getElementById("payment-balance")
+        .textContent = formatMoney(balance);
+}
+
+paymentBtn.addEventListener("click", () => {
+
+    validateCustomerForm();
+    updateContinueButton();
+
+    if (paymentBtn.disabled ||
+        continueBookingBtn.disabled) return;
+
+    updatePaymentSummary();
+
+    customerStep.hidden = true;
+    paymentStep.hidden = false;
+
+    paymentStep.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+});
+
+backToCustomerBtn.addEventListener("click", () => {
+
+    paymentStep.hidden = true;
+    customerStep.hidden = false;
+
+    customerStep.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+});
