@@ -964,3 +964,45 @@ footer span {
         font-size: 22px;
     }
 }
+/* Terms and Conditions */
+
+.terms-agreement {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 16px;
+    margin: 20px 0;
+    background: #f5f4ef;
+    border: 1px solid #e2e0d8;
+    border-radius: 8px;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.terms-agreement input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin: 3px 0 0;
+    flex-shrink: 0;
+    accent-color: #454b35;
+    cursor: pointer;
+}
+
+.terms-agreement label {
+    display: inline;
+    font-weight: 400;
+    cursor: pointer;
+}
+
+.terms-link {
+    display: inline;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: #454b35;
+    font: inherit;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
