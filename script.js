@@ -426,10 +426,12 @@ function calculatePrice() {
     const additionalPrice =
         additionalGuests * settings.extraPaxPrice;
 
-    const total = sessionPrice + additionalPrice;
+    const slotCount = hasExtraSlot && extraSlotTime ? 2 : 1;
 
-    basePrice.textContent =
-        formatMoney(sessionPrice);
+const totalSessionPrice = sessionPrice * slotCount;
+
+const total = totalSessionPrice + additionalPrice;
+
 
     extraPrice.textContent =
         formatMoney(additionalPrice);
@@ -438,7 +440,11 @@ function calculatePrice() {
         formatMoney(total);
 
     summaryPax.textContent =
-        guestCount + " orang";
+    guestCount + " orang";
+
+basePrice.textContent =
+    formatMoney(totalSessionPrice) +
+    " (" + slotCount + " slot)";
 }
 
 // Update booking summary
@@ -478,7 +484,28 @@ function updateSummary() {
             );
         });
 
-    calculatePrice();
+    const extraTimeSummary =
+    document.getElementById("summary-extra-time");
+
+if (extraTimeSummary) {
+    const extraRow = extraTimeSummary.closest(".summary-row");
+
+    if (hasExtraSlot && extraSlotTime) {
+        const [h, m] = extraSlotTime.split(":").map(Number);
+        const extraStart = h * 60 + m;
+
+        extraTimeSummary.textContent =
+            formatTime(extraStart) + " – " +
+            formatTime(extraStart + settings.sessionDuration);
+
+        extraRow.style.display = "";
+    } else {
+        extraTimeSummary.textContent = "Belum dipilih";
+        extraRow.style.display = "none";
+    }
+}
+
+calculatePrice();
 updateExtraSlotSection();
 }
 
