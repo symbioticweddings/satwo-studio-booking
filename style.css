@@ -847,3 +847,45 @@ footer span {
         font-size: 28px;
     }
 }
+/* Customer form refinement */
+
+.customer-card .form-group {
+    margin-bottom: 22px;
+}
+
+.customer-card label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.customer-card input,
+.customer-card textarea {
+    border: 1px solid #d5d2c8;
+    background: #faf9f5;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 15px;
+    box-sizing: border-box;
+    width: 100%;
+    transition: border-color 0.2s ease;
+}
+
+.customer-card input:focus,
+.customer-card textarea:focus {
+    outline: none;
+    border-color: #64694f;
+    box-shadow: 0 0 0 3px rgba(100,105,79,0.1);
+}
+
+@media (min-width: 601px) {
+    #back-to-booking {
+        width: 30%;
+    }
+
+    #continue-payment {
+        width: 65%;
+        margin-left: 3%;
+    }
+}
