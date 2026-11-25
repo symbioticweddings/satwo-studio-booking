@@ -889,3 +889,78 @@ footer span {
         margin-left: 3%;
     }
 }
+/* Payment step */
+
+#payment-step {
+    padding: 60px 20px;
+    scroll-margin-top: 100px;
+}
+
+#payment-step[hidden] {
+    display: none;
+}
+
+.payment-summary {
+    background: #f8f7f2;
+    border: 1px solid #dedbd2;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 24px 0;
+}
+
+.payment-summary .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+}
+
+.payment-deposit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    background: #e9ebdf;
+    border-radius: 8px;
+    padding: 18px 14px;
+    margin: 12px 0;
+    color: #64694f;
+}
+
+.payment-deposit strong {
+    font-size: 26px;
+    white-space: nowrap;
+}
+
+.payment-note {
+    font-size: 13px;
+    line-height: 1.7;
+    color: #77776d;
+    margin-bottom: 20px;
+}
+
+@media (min-width: 601px) {
+    #back-to-customer {
+        width: 30%;
+    }
+
+    #pay-deposit {
+        width: 65%;
+        margin-left: 3%;
+    }
+}
+
+@media (max-width: 600px) {
+    #payment-step {
+        padding: 30px 16px;
+    }
+
+    .payment-summary {
+        padding: 16px;
+    }
+
+    .payment-deposit strong {
+        font-size: 22px;
+    }
+}
