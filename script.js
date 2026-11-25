@@ -651,3 +651,38 @@ generateSlots();
 updateSummary();
 updateExtraSlotSection();
 updateContinueButton();
+// Customer form validation
+
+const customerForm = customerStep.querySelector("form");
+const paymentBtn = document.getElementById("continue-payment");
+
+const nameInput = customerForm.querySelector('input[type="text"]');
+const phoneInput = customerForm.querySelector('input[type="tel"]');
+const emailInput = document.getElementById("customer-email");
+
+function validateCustomerForm() {
+
+    const validName =
+        nameInput.value.trim().length >= 2;
+
+    const phone =
+        phoneInput.value.replace(/[\s-]/g, "");
+
+    const validPhone =
+        /^\+?[0-9]{8,15}$/.test(phone);
+
+    const validEmail =
+        emailInput.value.trim() !== "" &&
+        emailInput.checkValidity();
+
+    paymentBtn.disabled =
+        !(validName && validPhone && validEmail);
+}
+
+customerForm.addEventListener("input", validateCustomerForm);
+
+customerForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+});
+
+validateCustomerForm();
